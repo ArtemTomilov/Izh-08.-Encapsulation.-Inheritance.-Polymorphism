@@ -6,216 +6,194 @@ using System.Threading.Tasks;
 
 namespace Izh_08.Encapsulation
 {
-    public class BubbleSort
+    public abstract class BubbleSort
     {
-        public static int[,] DescendingSumLines(int[,] arrayNumbers)
+        public int[,] ArrayNumber { get; set; }
+        public int[,] ResultSort;
+        
+        public abstract void ThisSort();
+    }
+
+    public class DescendingSumLines : BubbleSort
+    {
+        public override void ThisSort()
         {
-            for (int q = 0; q < arrayNumbers.GetLength(0); q++)
+            for (int q = 0; q < ArrayNumber.GetLength(0); q++)
             {
-                for (int i = 1; i < arrayNumbers.GetLength(0); i++)
+                for (int i = 1; i < ArrayNumber.GetLength(0); i++)
                 {
                     int sum1 = 0;
-                    for (int j = 0; j < arrayNumbers.GetLength(1); j++)
+                    for (int j = 0; j < ArrayNumber.GetLength(1); j++)
                     {
-                        sum1 += arrayNumbers[i - 1, j];
+                        sum1 += ArrayNumber[i - 1, j];
                     }
                     int sum2 = 0;
-                    for (int j = 0; j < arrayNumbers.GetLength(1); j++)
+                    for (int j = 0; j < ArrayNumber.GetLength(1); j++)
                     {
-                        sum2 += arrayNumbers[i, j];
+                        sum2 += ArrayNumber[i, j];
                     }
                     if (sum1 > sum2)
                     {
-                        for (int w = 0; w < arrayNumbers.GetLength(1); w++)
+                        for (int w = 0; w < ArrayNumber.GetLength(1); w++)
                         {
-                            int buffer = arrayNumbers[i, w];
-                            arrayNumbers[i, w] = arrayNumbers[i - 1, w];
-                            arrayNumbers[i - 1, w] = buffer;
+                            int buffer = ArrayNumber[i, w];
+                            ArrayNumber[i, w] = ArrayNumber[i - 1, w];
+                            ArrayNumber[i - 1, w] = buffer;
                         }
                     }
                 }
-
+                ResultSort = ArrayNumber;
             }
-            return arrayNumbers;
         }
+    }
 
-        public static int[,] AscendingSumLines(int[,] arrayNumbers)
+    public class AscendingSumLines : BubbleSort
+    {
+        public override void ThisSort()
         {
-            for (int q = 0; q < arrayNumbers.GetLength(0); q++)
+            for (int q = 0; q < ArrayNumber.GetLength(0); q++)
             {
-                for (int i = 1; i < arrayNumbers.GetLength(0); i++)
+                for (int i = 1; i < ArrayNumber.GetLength(0); i++)
                 {
                     int sum1 = 0;
-                    for (int j = 0; j < arrayNumbers.GetLength(1); j++)
+                    for (int j = 0; j < ArrayNumber.GetLength(1); j++)
                     {
-                        sum1 += arrayNumbers[i - 1, j];
+                        sum1 += ArrayNumber[i - 1, j];
                     }
                     int sum2 = 0;
-                    for (int j = 0; j < arrayNumbers.GetLength(1); j++)
+                    for (int j = 0; j < ArrayNumber.GetLength(1); j++)
                     {
-                        sum2 += arrayNumbers[i, j];
+                        sum2 += ArrayNumber[i, j];
                     }
                     if (sum1 < sum2)
                     {
-                        for (int w = 0; w < arrayNumbers.GetLength(1); w++)
+                        for (int w = 0; w < ArrayNumber.GetLength(1); w++)
                         {
-                            int buffer = arrayNumbers[i, w];
-                            arrayNumbers[i, w] = arrayNumbers[i - 1, w];
-                            arrayNumbers[i - 1, w] = buffer;
+                            int buffer = ArrayNumber[i, w];
+                            ArrayNumber[i, w] = ArrayNumber[i - 1, w];
+                            ArrayNumber[i - 1, w] = buffer;
                         }
                     }
                 }
-
             }
-            return arrayNumbers;
+            ResultSort = ArrayNumber;
         }
+    }
 
-        public static int[,] AscendingMaxNumber(int[,] arrayNumbers)
+    public class DescendingMaxNumber : BubbleSort
+    {
+        public override void ThisSort()
         {
-            for (int q = 0; q < arrayNumbers.GetLength(0); q++)
+            for (int q = 0; q < ArrayNumber.GetLength(0); q++)
             {
-                for (int i = 1; i < arrayNumbers.GetLength(0); i++)
+                for (int i = 1; i < ArrayNumber.GetLength(0); i++)
                 {
-                    int max1 = arrayNumbers[i - 1, 0];
-                    for (int j = 1; j < arrayNumbers.GetLength(1); j++)
+                    int max1 = ArrayNumber[i - 1, 0];
+                    for (int j = 1; j < ArrayNumber.GetLength(1); j++)
                     {
-                        if (max1 < arrayNumbers[i - 1, j])
+                        if (max1 < ArrayNumber[i - 1, j])
                         {
-                            max1 = arrayNumbers[i - 1, j];
+                            max1 = ArrayNumber[i - 1, j];
                         }
                     }
-                    int max2 = arrayNumbers[i, 0];
-                    for (int j = 1; j < arrayNumbers.GetLength(1); j++)
+                    int max2 = ArrayNumber[i, 0];
+                    for (int j = 1; j < ArrayNumber.GetLength(1); j++)
                     {
-                        if (max2 < arrayNumbers[i, j])
+                        if (max2 < ArrayNumber[i, j])
                         {
-                            max2 = arrayNumbers[i, j];
-                        }
-                    }
-                    if (max1 < max2)
-                    {
-                        for (int w = 0; w < arrayNumbers.GetLength(1); w++)
-                        {
-                            int buffer = arrayNumbers[i, w];
-                            arrayNumbers[i, w] = arrayNumbers[i - 1, w];
-                            arrayNumbers[i - 1, w] = buffer;
-                        }
-                    }
-                }
-
-            }
-            return arrayNumbers;
-        }
-
-        public static int[,] DescendingMaxNumber(int[,] arrayNumbers)
-        {
-            for (int q = 0; q < arrayNumbers.GetLength(0); q++)
-            {
-                for (int i = 1; i < arrayNumbers.GetLength(0); i++)
-                {
-                    int max1 = arrayNumbers[i - 1, 0];
-                    for (int j = 1; j < arrayNumbers.GetLength(1); j++)
-                    {
-                        if (max1 < arrayNumbers[i - 1, j])
-                        {
-                            max1 = arrayNumbers[i - 1, j];
-                        }
-                    }
-                    int max2 = arrayNumbers[i, 0];
-                    for (int j = 1; j < arrayNumbers.GetLength(1); j++)
-                    {
-                        if (max2 < arrayNumbers[i, j])
-                        {
-                            max2 = arrayNumbers[i, j];
+                            max2 = ArrayNumber[i, j];
                         }
                     }
                     if (max1 > max2)
                     {
-                        for (int w = 0; w < arrayNumbers.GetLength(1); w++)
+                        for (int w = 0; w < ArrayNumber.GetLength(1); w++)
                         {
-                            int buffer = arrayNumbers[i, w];
-                            arrayNumbers[i, w] = arrayNumbers[i - 1, w];
-                            arrayNumbers[i - 1, w] = buffer;
+                            int buffer = ArrayNumber[i, w];
+                            ArrayNumber[i, w] = ArrayNumber[i - 1, w];
+                            ArrayNumber[i - 1, w] = buffer;
                         }
                     }
                 }
-
             }
-            return arrayNumbers;
+            ResultSort = ArrayNumber;
         }
+    }
 
-        public static int[,] AscendingMinNumber(int[,] arrayNumbers)
+    public class AscendingMinNumber : BubbleSort
+    {
+        public override void ThisSort()
         {
-            for (int q = 0; q < arrayNumbers.GetLength(0); q++)
+            for (int q = 0; q < ArrayNumber.GetLength(0); q++)
             {
-                for (int i = 1; i < arrayNumbers.GetLength(0); i++)
+                for (int i = 1; i < ArrayNumber.GetLength(0); i++)
                 {
-                    int min1 = arrayNumbers[i - 1, 0];
-                    for (int j = 1; j < arrayNumbers.GetLength(1); j++)
+                    int min1 = ArrayNumber[i - 1, 0];
+                    for (int j = 1; j < ArrayNumber.GetLength(1); j++)
                     {
-                        if (min1 > arrayNumbers[i - 1, j])
+                        if (min1 > ArrayNumber[i - 1, j])
                         {
-                            min1 = arrayNumbers[i - 1, j];
+                            min1 = ArrayNumber[i - 1, j];
                         }
                     }
-                    int min2 = arrayNumbers[i, 0];
-                    for (int j = 1; j < arrayNumbers.GetLength(1); j++)
+                    int min2 = ArrayNumber[i, 0];
+                    for (int j = 1; j < ArrayNumber.GetLength(1); j++)
                     {
-                        if (min2 > arrayNumbers[i, j])
+                        if (min2 > ArrayNumber[i, j])
                         {
-                            min2 = arrayNumbers[i, j];
+                            min2 = ArrayNumber[i, j];
                         }
                     }
                     if (min1 > min2)
                     {
-                        for (int w = 0; w < arrayNumbers.GetLength(1); w++)
+                        for (int w = 0; w < ArrayNumber.GetLength(1); w++)
                         {
-                            int buffer = arrayNumbers[i, w];
-                            arrayNumbers[i, w] = arrayNumbers[i - 1, w];
-                            arrayNumbers[i - 1, w] = buffer;
+                            int buffer = ArrayNumber[i, w];
+                            ArrayNumber[i, w] = ArrayNumber[i - 1, w];
+                            ArrayNumber[i - 1, w] = buffer;
                         }
                     }
                 }
-
             }
-            return arrayNumbers;
+            ResultSort = ArrayNumber;
         }
+    }
 
-        public static int[,] DescendingMinNumber(int[,] arrayNumbers)
+    public class DescendingMinNumber : BubbleSort
+    {
+        public override void ThisSort()
         {
-            for (int q = 0; q < arrayNumbers.GetLength(0); q++)
+            for (int q = 0; q < ArrayNumber.GetLength(0); q++)
             {
-                for (int i = 1; i < arrayNumbers.GetLength(0); i++)
+                for (int i = 1; i < ArrayNumber.GetLength(0); i++)
                 {
-                    int min1 = arrayNumbers[i - 1, 0];
-                    for (int j = 1; j < arrayNumbers.GetLength(1); j++)
+                    int min1 = ArrayNumber[i - 1, 0];
+                    for (int j = 1; j < ArrayNumber.GetLength(1); j++)
                     {
-                        if (min1 > arrayNumbers[i - 1, j])
+                        if (min1 > ArrayNumber[i - 1, j])
                         {
-                            min1 = arrayNumbers[i - 1, j];
+                            min1 = ArrayNumber[i - 1, j];
                         }
                     }
-                    int min2 = arrayNumbers[i, 0];
-                    for (int j = 1; j < arrayNumbers.GetLength(1); j++)
+                    int min2 = ArrayNumber[i, 0];
+                    for (int j = 1; j < ArrayNumber.GetLength(1); j++)
                     {
-                        if (min2 > arrayNumbers[i, j])
+                        if (min2 > ArrayNumber[i, j])
                         {
-                            min2 = arrayNumbers[i, j];
+                            min2 = ArrayNumber[i, j];
                         }
                     }
                     if (min1 < min2)
                     {
-                        for (int w = 0; w < arrayNumbers.GetLength(1); w++)
+                        for (int w = 0; w < ArrayNumber.GetLength(1); w++)
                         {
-                            int buffer = arrayNumbers[i, w];
-                            arrayNumbers[i, w] = arrayNumbers[i - 1, w];
-                            arrayNumbers[i - 1, w] = buffer;
+                            int buffer = ArrayNumber[i, w];
+                            ArrayNumber[i, w] = ArrayNumber[i - 1, w];
+                            ArrayNumber[i - 1, w] = buffer;
                         }
                     }
                 }
-
             }
-            return arrayNumbers;
+            ResultSort = ArrayNumber;
         }
     }
 }

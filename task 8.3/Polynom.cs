@@ -115,16 +115,63 @@ namespace task_8._3
 
         public static bool operator == (Polynom FirstArr, Polynom SecondArr)
         {
-            if (FirstArr.Coefficients.Length != SecondArr.Coefficients.Length)
-            {
-                return false;
-            }
+
+            int x = (FirstArr.Coefficients.Length > SecondArr.Coefficients.Length ? FirstArr.Coefficients.Length : SecondArr.Coefficients.Length);
+            int sum = 0;
             
-            for (int i = 0; i < FirstArr.Coefficients.Length; i++)
+            if (FirstArr.Coefficients.Length > SecondArr.Coefficients.Length)
             {
-                if (FirstArr[i] != SecondArr[i])
+                for (int i = x-1; i>=0; i--)
                 {
+                    if (FirstArr[i]==0)
+                        sum += 1;
+
+                    if (FirstArr[i] != 0)
+                        break;
+                }
+
+                double[] Buffer = new double[x - sum];
+
+                if (sum == 0)
                     return false;
+
+                if (sum > 0)
+                    Array.Copy(FirstArr.Coefficients, 0, Buffer, 0, x - sum);
+
+                if ( Buffer.Length!=SecondArr.Coefficients.Length)
+                    return false;
+
+            }
+
+            if (SecondArr.Coefficients.Length > FirstArr.Coefficients.Length)
+            {
+                for (int i = x-1; i >= 0; i--)
+                {
+                    if (SecondArr[i] == 0)
+                        sum += 1;
+
+                    if (SecondArr[i] != 0)
+                        break;
+                }
+
+                double[] Buffer = new double[x - sum];
+
+                if (sum == 0)
+                    return false;
+
+                if (sum > 0)
+                    Array.Copy(SecondArr.Coefficients, 0, Buffer, 0, x - sum);
+
+                if (Buffer.Length != FirstArr.Coefficients.Length)
+                    return false;
+            }
+
+            if (FirstArr.Coefficients.Length == SecondArr.Coefficients.Length)
+            {
+                for (int i = 0; i < FirstArr.Coefficients.Length; i++)
+                {
+                    if (FirstArr[i] != SecondArr[i])
+                        return false;
                 }
             }
 

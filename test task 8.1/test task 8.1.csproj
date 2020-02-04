@@ -56,7 +56,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Izh-08. Encapsulation\task 8.1.csproj">
+    <ProjectReference Include="..\task 8.1\task 8.1.csproj">
       <Project>{c9a4ab53-96e6-49b5-acef-596eb7e9ea2a}</Project>
       <Name>task 8.1</Name>
     </ProjectReference>

@@ -11,14 +11,15 @@ namespace task_8._3
         static void Main(string[] args)
         {
 
-            double[] FirstArr = { -81,0,12,1 };
-            double[] SecondArr = { 3,1};
+            double[] arr1 = { 0, 8, 0, 0, 12 };
+            double[] arr2 = { 0, 8, 0, 0, 13 };
 
-            Polynom p1 = new Polynom(FirstArr);
-            Polynom p2 = new Polynom(SecondArr);
-            Polynom p = p1 / p2;
+            Polynom p1 = new Polynom(arr1);
+            Polynom p2 = new Polynom(arr2);
 
-            Console.WriteLine(p.ToString());
+
+                Console.WriteLine(p1==p2);
+
 
             Console.ReadLine();
         }

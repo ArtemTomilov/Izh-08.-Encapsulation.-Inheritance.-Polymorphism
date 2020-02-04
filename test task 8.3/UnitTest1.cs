@@ -70,13 +70,13 @@ namespace test_task_8._3
         [TestMethod]
         public void OperatorEqualityTest()
         {
-            double[] arr1 = { 1.5, 2.5, 3.5, 4.5 };
-            double[] arr2 = { 1.5, 2.5, 3.5, 4.5 };
+            double[] arr1 = { 0, 8, 0, 0, 13 };
+            double[] arr2 = { 0, 8, 0, 0, 13, 0, 0 };
 
             Polynom p1 = new Polynom(arr1);
             Polynom p2 = new Polynom(arr2);
             
-           CollectionAssert.AreEqual(p1.Coefficients, p2.Coefficients);
+           Assert.IsTrue(p1==p2);
         }
     }
 }

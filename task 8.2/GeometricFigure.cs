@@ -50,20 +50,7 @@ namespace task_8._2
         }
     }
 
-    class Square : GeometricFigure
-    {
 
-        public double Side { get; set; }
-
-        public override void Area()
-        {
-            S = Side*Side;
-        }
-        public override void Perimeter()
-        {
-            P = Side*4;
-        }
-    }
 
     class Rectangle : GeometricFigure
     { 
@@ -73,10 +60,17 @@ namespace task_8._2
         public override void Area()
         {
             S = Width * Height;
+            Console.WriteLine(S);
         }
         public override void Perimeter()
         {
             P = (Width+Height) * 2;
+            Console.WriteLine(P);
         }
+    }
+
+    class Square:Rectangle
+    {
+        
     }
 }
